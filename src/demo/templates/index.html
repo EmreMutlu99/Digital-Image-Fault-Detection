@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Defect Detection</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background: #f4f6f8;
+            margin: 0;
+            padding: 2rem;
+            text-align: center;
+        }
+        h1 {
+            margin-bottom: 2rem;
+            color: #222;
+            font-size: 2rem;
+        }
+        .upload-container {
+            margin-bottom: 2rem;
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            align-items: center;
+        }
+        input[type="file"] {
+            padding: 0.5rem;
+            font-size: 1rem;
+        }
+        button {
+            padding: 0.6rem 1.2rem;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        #loading {
+            color: #007bff;
+            font-style: italic;
+            margin-top: 1rem;
+        }
+        .image-row {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        .image-preview {
+            background: white;
+            padding: 1rem;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            width: 300px;
+        }
+        .image-preview img {
+            width: 100%;
+            height: auto;
+            object-fit: contain;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+        }
+        .image-preview h3 {
+            margin-top: 0.8rem;
+            font-weight: 500;
+            font-size: 1rem;
+            color: #444;
+        }
+    </style>
+</head>
+<body>
+    <h1>Defect Detection</h1>
+
+    <div class="upload-container">
+        <form id="upload-form" method="post" enctype="multipart/form-data">
+            <input type="file" name="image" id="image-input" accept="image/*" required>
+            <button type="submit">Upload & Predict</button>
+        </form>
+    </div>
+    <div id="loading" style="display: none;">⏳ Processing image...</div>
+
+    <div class="image-row" id="result-row" style="display: none;">
+        <div class="image-preview">
+            <img id="original-img" src="#" alt="Original Image">
+            <h3>Original Image</h3>
+        </div>
+        <div class="image-preview">
+            <img id="predicted-img" src="#" alt="Predicted Mask">
+            <h3>Predicted Mask</h3>
+        </div>
+    </div>
+
+    <script>
+        const form = document.getElementById('upload-form');
+        const imageInput = document.getElementById('image-input');
+        const originalImg = document.getElementById('original-img');
+        const predictedImg = document.getElementById('predicted-img');
+        const resultRow = document.getElementById('result-row');
+        const loading = document.getElementById('loading');
+
+        form.onsubmit = async (e) => {
+            e.preventDefault();
+            const file = imageInput.files[0];
+            if (!file) return;
+
+            // Preview original image
+            originalImg.src = URL.createObjectURL(file);
+            resultRow.style.display = 'none';
+            loading.style.display = 'block';
+
+            const formData = new FormData();
+            formData.append("image", file);
+
+            const response = await fetch("/", {
+                method: "POST",
+                body: formData
+            });
+
+            const blob = await response.blob();
+            predictedImg.src = URL.createObjectURL(blob);
+
+            loading.style.display = 'none';
+            resultRow.style.display = 'flex';
+        };
+    </script>
+</body>
+</html>
