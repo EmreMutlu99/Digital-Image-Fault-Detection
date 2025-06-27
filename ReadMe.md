@@ -1,4 +1,4 @@
-```markdown
+
 # 🧵 Surface Defect Detection Demo — Textile Production
 
 This repository contains a **supervised deep-learning demo** for pixel-level defect segmentation in industrial textile images.  
@@ -16,29 +16,6 @@ A U-Net model, trained on manually labeled data, predicts surface anomalies. The
 | **Web UI**        | Modern upload page, responsive layout, original & mask displayed together    |
 
 ---
-
-## 🗂 Project Layout
-```
-
-DIGITAL-IMAGE-FAULT-DETECTION/
-├─ model/
-│  ├─ unet\_dagm\_class1.pth        # pretrained weights
-│  ├─ Model Test.ipynb            # batch visualization notebook
-│  └─ Model Training.ipynb        # (optional) training workflow
-├─ src/
-│  └─ demo/
-│     ├─ backend.py               # Flask backend (integrated U-Net + endpoints)
-│     └─ templates/
-│         └─ index.html           # modern upload UI
-├─ Test/                          # ▶️ sample images to try out
-│     ├─ 0001.PNG
-│     ├─ 0002.PNG
-│     ├─ …
-│     └─ Label/                   # ground-truth masks (optional reference)
-├─ requirements.txt               # Python dependencies
-└─ README.md
-
-````
 
 > **Sample data**  
 > Ready-made test images reside in **`Test/`** (masks in `Test/Label/`).  
@@ -68,7 +45,7 @@ Open **[http://127.0.0.1:5000](http://127.0.0.1:5000)** and either upload your o
 
 | Original               | Predicted Mask                     |
 | ---------------------- | ---------------------------------- |
-| ![orig](Test/0001.PNG) | ![mask](Test/Label/0001_label.PNG) |
+| ![orig](Test/0002.PNG) | ![mask](Test/Label/0002_label.PNG) |
 
 ---
 
@@ -92,10 +69,3 @@ Open **[http://127.0.0.1:5000](http://127.0.0.1:5000)** and either upload your o
 For professional integration or custom training, contact us at **[info@sagel-ai.com](mailto:info@sagel-ai.com)**
 
 ---
-
-## ⚖️ License
-
-MIT License © 2025 Your Company Name
-
-```
-```
