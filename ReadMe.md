@@ -26,18 +26,11 @@ A U-Net model, trained on manually labeled data, predicts surface anomalies. The
 ## 🚀 Quick Start
 
 ```bash
-# 1  clone
-git clone https://github.com/your-org/Digital-Image-Fault-Detection.git
-cd Digital-Image-Fault-Detection
 
-# 2  create & activate virtual env (recommended)
-python3 -m venv venv
-source venv/bin/activate          # Windows: venv\Scripts\activate
-
-# 3  install requirements
+#  install requirements
 pip install -r requirements.txt
 
-# 4  run the web demo
+#  run the web demo
 python3 src/demo/backend.py
 ````
 
