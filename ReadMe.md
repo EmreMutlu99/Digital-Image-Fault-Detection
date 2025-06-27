@@ -48,7 +48,7 @@ Open **[http://127.0.0.1:5000](http://127.0.0.1:5000)** and either upload your o
 | ![orig](Test/0002.PNG) | ![mask](Test/Label/0002_label.PNG) |
 
 ## Example Output
-![orig](DefectDetection.PNG)
+![orig](/DefectDetection.png)
 ---
 
 ## 🧠 Model Training Summary
